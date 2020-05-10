@@ -13,7 +13,7 @@ const int height = 736;
 // wxWidgets APP
 IMPLEMENT_APP(ChatBotApp);
 
-std::string dataPath = "../";
+std::string dataPath = "./";
 std::string imgBasePath = dataPath + "images/";
 
 bool ChatBotApp::OnInit()
@@ -124,7 +124,7 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     _chatLogic->SetPanelDialogHandle(this);
 
     // load answer graph from file
-    _chatLogic->LoadAnswerGraphFromFile(dataPath + "src/answergraph.txt");
+    _chatLogic->LoadAnswerGraphFromFile(dataPath + "data/answergraph.txt");
 
     ////
     //// EOF STUDENT CODE

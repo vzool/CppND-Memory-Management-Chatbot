@@ -7,7 +7,8 @@ project(Membot)
 find_package(wxWidgets REQUIRED COMPONENTS core base)
 include(${wxWidgets_USE_FILE})
 
-file(GLOB project_SRCS src/*.cpp)
+include_directories(include)
+file(GLOB project_SRCS "src/*.cpp")
 
 add_executable(membot ${project_SRCS})
 target_link_libraries(membot ${wxWidgets_LIBRARIES})
