@@ -20,8 +20,8 @@ private:
     std::vector<std::unique_ptr<GraphEdge>> _childEdges;  // edges to subsequent nodes
 
     // data handles (not owned)
-    std::vector<GraphEdge *> _parentEdges; // edges to preceding nodes 
-    ChatBot *_chatBot;
+    std::vector<GraphEdge*> _parentEdges; // edges to preceding nodes 
+    std::unique_ptr<ChatBot> _chatBot;
  
     ////
     //// EOF STUDENT CODE
@@ -38,7 +38,7 @@ public:
     // getter / setter
     int GetID() { return _id; }
     int GetNumberOfChildEdges() { return _childEdges.size(); }
-    GraphEdge *GetChildEdgeAtIndex(int index) const;
+    GraphEdge* GetChildEdgeAtIndex(int index) const;
     std::vector<std::string> GetAnswers() { return _answers; }
     int GetNumberOfParents() { return _parentEdges.size(); }
 
@@ -50,12 +50,12 @@ public:
     //// STUDENT CODE
     ////
 
-    void MoveChatbotHere(ChatBot *chatbot);
+    void MoveChatbotHere(std::unique_ptr<ChatBot> chatbot);
 
     ////
     //// EOF STUDENT CODE
 
-    void MoveChatbotToNewNode(GraphNode *newNode);
+    void MoveChatbotToNewNode(GraphNode* newNode);
 };
 
 #endif /* GRAPHNODE_H_ */

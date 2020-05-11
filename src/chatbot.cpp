@@ -11,6 +11,8 @@
 // constructor WITHOUT memory allocation
 ChatBot::ChatBot()
 {
+    std::cout << "ChatBot Empty Constructor" << std::endl;
+
     // invalidate data handles
     _image = NULL;
     _chatLogic = nullptr;
@@ -25,7 +27,6 @@ ChatBot::ChatBot(std::string filename)
     // invalidate data handles
     _chatLogic = nullptr;
     _rootNode = nullptr;
-    _filename = filename;
 
     // load image into heap memory
     _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
@@ -46,70 +47,60 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 // copy constructor
-ChatBot::ChatBot(const ChatBot &other)
+ChatBot::ChatBot(const ChatBot& other)
 {
     std::cout << "ChatBot Copy Constructor" << std::endl;
 
     // invalidate data handles
     _chatLogic = nullptr;
-    _rootNode = nullptr;
-    _filename = other._filename;
 
-    // load image into heap memory
-    _image = new wxBitmap(_filename, wxBITMAP_TYPE_PNG);
+    _rootNode = other._rootNode;
+    _image = other._image;
 }
 
 // copy assignment operator
 
-ChatBot& ChatBot::operator=(const ChatBot &other)
+ChatBot& ChatBot::operator=(const ChatBot& other)
 {
     std::cout << "ChatBot Assignment Operator Constructor" << std::endl;
 
-    if (this == &other)
-        return *this;
+    if (this == &other) return *this;
 
     // invalidate data handles
     _chatLogic = nullptr;
-    _rootNode = nullptr;
-    _filename = other._filename;
 
-    // load image into heap memory
-    _image = new wxBitmap(_filename, wxBITMAP_TYPE_PNG);
+    _rootNode = other._rootNode;
+    _image = other._image;
 
     return *this;
 }
 
 // move constructor
 
-ChatBot::ChatBot(ChatBot &&other)
+ChatBot::ChatBot(ChatBot&& other)
 {
     std::cout << "ChatBot Move Constructor" << std::endl;
 
     // invalidate data handles
     _chatLogic = nullptr;
-    _rootNode = nullptr;
-    _filename = other._filename;
 
-    // load image into heap memory
-    _image = new wxBitmap(_filename, wxBITMAP_TYPE_PNG);
+    _rootNode = other._rootNode;
+    _image = other._image;
 }
 
 // move constructor operator
 
-ChatBot &ChatBot::operator=(ChatBot &&other)
+ChatBot &ChatBot::operator=(ChatBot&& other)
 {
-    std::cout << "ChatBot Assignment Operator Move Constructor" << std::endl;
+    std::cout << "ChatBot Move Assignment Operator" << std::endl;
 
-    if (this == &other)
-        return *this;
+    if (this == &other) return *this;
 
     // invalidate data handles
     _chatLogic = nullptr;
-    _rootNode = nullptr;
-    _filename = other._filename;
 
-    // load image into heap memory
-    _image = new wxBitmap(_filename, wxBITMAP_TYPE_PNG);
+    _rootNode = other._rootNode;
+    _image = other._image;
 
     return *this;
 }
@@ -151,7 +142,7 @@ void ChatBot::ReceiveMessageFromUser(std::string message)
     _currentNode->MoveChatbotToNewNode(newNode);
 }
 
-void ChatBot::SetCurrentNode(GraphNode *node)
+void ChatBot::SetCurrentNode(GraphNode* node)
 {
     // update pointer to current node
     _currentNode = node;

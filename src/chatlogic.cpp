@@ -17,11 +17,11 @@ ChatLogic::ChatLogic()
     //// STUDENT CODE
     ////
 
-    // create instance of chatbot
-    _chatBot = new ChatBot("./images/chatbot.png");
+    // // create instance of chatbot
+    // _chatBot = new ChatBot("./images/chatbot.png");
 
-    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
+    // // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    // _chatBot->SetChatLogicHandle(this);
 
     ////
     //// EOF STUDENT CODE
@@ -31,9 +31,6 @@ ChatLogic::~ChatLogic()
 {
     //// STUDENT CODE
     ////
-
-    // delete chatbot instance
-    delete _chatBot;
 
     // delete all nodes
     for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
@@ -51,7 +48,7 @@ ChatLogic::~ChatLogic()
 }
 
 template <typename T>
-void ChatLogic::AddAllTokensToElement(std::string tokenID, tokenlist &tokens, T &element)
+void ChatLogic::AddAllTokensToElement(std::string tokenID, tokenlist& tokens, T& element)
 {
     // find all occurences for current node
     auto token = tokens.begin();
@@ -213,20 +210,30 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         }
     }
 
+    // create a unique instance of chatbot
+    std::unique_ptr<ChatBot> chatBot = std::make_unique<ChatBot>("./images/chatbot.png");
+
+    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    chatBot->SetChatLogicHandle(this);
+
     // add chatbot to graph root node
-    _chatBot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(_chatBot);
-    
+    chatBot->SetRootNode(rootNode);
+
+    // send reference to _chatBot
+    _chatBot = chatBot.get();
+
+    rootNode->MoveChatbotHere(std::move(chatBot));
+
     ////
     //// EOF STUDENT CODE
 }
 
-void ChatLogic::SetPanelDialogHandle(ChatBotPanelDialog *panelDialog)
+void ChatLogic::SetPanelDialogHandle(ChatBotPanelDialog* panelDialog)
 {
     _panelDialog = panelDialog;
 }
 
-void ChatLogic::SetChatbotHandle(ChatBot *chatbot)
+void ChatLogic::SetChatbotHandle(ChatBot* chatbot)
 {
     _chatBot = chatbot;
 }
