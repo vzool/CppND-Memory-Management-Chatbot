@@ -79,7 +79,7 @@ class ChatBotFrameImagePanel : public wxPanel
 
 public:
     // constructor / desctructor
-    ChatBotFrameImagePanel(wxFrame *parent);
+    ChatBotFrameImagePanel(wxFrame* parent);
 
     // events
     void paintEvent(wxPaintEvent& evt);

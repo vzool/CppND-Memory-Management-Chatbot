@@ -90,7 +90,7 @@ ChatBot::ChatBot(ChatBot&& other)
 
 // move constructor operator
 
-ChatBot &ChatBot::operator=(ChatBot&& other)
+ChatBot& ChatBot::operator=(ChatBot&& other)
 {
     std::cout << "ChatBot Move Assignment Operator" << std::endl;
 
@@ -125,7 +125,7 @@ void ChatBot::ReceiveMessageFromUser(std::string message)
     }
 
     // select best fitting edge to proceed along
-    GraphNode *newNode;
+    GraphNode* newNode;
     if (levDists.size() > 0)
     {
         // sort in ascending order of Levenshtein distance (best fit is at the top)

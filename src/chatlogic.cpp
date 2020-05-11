@@ -122,7 +122,8 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                         // create new element if ID does not yet exist
                         if (newNode == _nodes.end())
                         {
-                            _nodes.emplace_back(new GraphNode(id));
+                            std::unique_ptr<GraphNode> node = std::make_unique <GraphNode>(id);
+                            _nodes.emplace_back(std::move(node));
                             newNode = _nodes.end() - 1; // get iterator to last element
 
                             // add all answers to current node
@@ -186,7 +187,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     ////
 
     // identify root node
-    GraphNode *rootNode = nullptr;
+    GraphNode* rootNode = nullptr;
     for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
     {
         // search for nodes which have no incoming edges
