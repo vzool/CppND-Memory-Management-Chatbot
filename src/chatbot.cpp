@@ -12,7 +12,7 @@
 ChatBot::ChatBot()
 {
     // invalidate data handles
-    _image = nullptr;
+    _image = NULL;
     _chatLogic = nullptr;
     _rootNode = nullptr;
 }
@@ -25,6 +25,7 @@ ChatBot::ChatBot(std::string filename)
     // invalidate data handles
     _chatLogic = nullptr;
     _rootNode = nullptr;
+    _filename = filename;
 
     // load image into heap memory
     _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
@@ -44,6 +45,74 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+// copy constructor
+ChatBot::ChatBot(const ChatBot &other)
+{
+    std::cout << "ChatBot Copy Constructor" << std::endl;
+
+    // invalidate data handles
+    _chatLogic = nullptr;
+    _rootNode = nullptr;
+    _filename = other._filename;
+
+    // load image into heap memory
+    _image = new wxBitmap(_filename, wxBITMAP_TYPE_PNG);
+}
+
+// copy assignment operator
+
+ChatBot& ChatBot::operator=(const ChatBot &other)
+{
+    std::cout << "ChatBot Assignment Operator Constructor" << std::endl;
+
+    if (this == &other)
+        return *this;
+
+    // invalidate data handles
+    _chatLogic = nullptr;
+    _rootNode = nullptr;
+    _filename = other._filename;
+
+    // load image into heap memory
+    _image = new wxBitmap(_filename, wxBITMAP_TYPE_PNG);
+
+    return *this;
+}
+
+// move constructor
+
+ChatBot::ChatBot(ChatBot &&other)
+{
+    std::cout << "ChatBot Move Constructor" << std::endl;
+
+    // invalidate data handles
+    _chatLogic = nullptr;
+    _rootNode = nullptr;
+    _filename = other._filename;
+
+    // load image into heap memory
+    _image = new wxBitmap(_filename, wxBITMAP_TYPE_PNG);
+}
+
+// move constructor operator
+
+ChatBot &ChatBot::operator=(ChatBot &&other)
+{
+    std::cout << "ChatBot Assignment Operator Move Constructor" << std::endl;
+
+    if (this == &other)
+        return *this;
+
+    // invalidate data handles
+    _chatLogic = nullptr;
+    _rootNode = nullptr;
+    _filename = other._filename;
+
+    // load image into heap memory
+    _image = new wxBitmap(_filename, wxBITMAP_TYPE_PNG);
+
+    return *this;
+}
 
 ////
 //// EOF STUDENT CODE
