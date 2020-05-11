@@ -48,7 +48,7 @@ public:
     void LoadAnswerGraphFromFile(std::string filename);
     void SendMessageToChatbot(std::string message);
     void SendMessageToUser(std::string message);
-    wxBitmap *GetImageFromChatbot();
+    wxBitmap* GetImageFromChatbot();
 };
 
 #endif /* CHATLOGIC_H_ */
