@@ -62,9 +62,18 @@ ChatBot::ChatBot(const ChatBot& other)
 
 ChatBot& ChatBot::operator=(const ChatBot& other)
 {
-    std::cout << "ChatBot Assignment Operator Constructor" << std::endl;
+    std::cout << "ChatBot Assignment Operator Constructor";
 
-    if (this == &other) return *this;
+    if (this == &other)
+    {    
+        std::cout << " [SELF] " << std::endl;
+
+        return *this;
+    }
+    else
+    {
+        std::cout << " [OTHER] " << std::endl;
+    }
 
     // invalidate data handles
     _chatLogic = nullptr;
@@ -92,9 +101,18 @@ ChatBot::ChatBot(ChatBot&& other)
 
 ChatBot& ChatBot::operator=(ChatBot&& other)
 {
-    std::cout << "ChatBot Move Assignment Operator" << std::endl;
+    std::cout << "ChatBot Move Assignment Operator";
 
-    if (this == &other) return *this;
+    if (this == &other)
+    {
+        std::cout << " [SELF] " << std::endl;
+
+        return *this;
+    }
+    else
+    {
+        std::cout << " [OTHER] " << std::endl;
+    }
 
     // invalidate data handles
     _chatLogic = nullptr;
