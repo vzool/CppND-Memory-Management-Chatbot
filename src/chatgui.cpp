@@ -130,18 +130,7 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow* parent, wxWindowID id)
     //// EOF STUDENT CODE
 }
 
-ChatBotPanelDialog::~ChatBotPanelDialog()
-{
-    //// STUDENT CODE
-    ////
-    auto manual = _chatLogic.release();
-    
-    if(manual != nullptr){
-        delete manual;
-    }
-    ////
-    //// EOF STUDENT CODE
-}
+ChatBotPanelDialog::~ChatBotPanelDialog(){}
 
 void ChatBotPanelDialog::AddDialogItem(wxString text, bool isFromUser)
 {

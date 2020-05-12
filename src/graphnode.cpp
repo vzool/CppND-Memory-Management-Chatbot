@@ -6,30 +6,7 @@ GraphNode::GraphNode(int id)
     _id = id;
 }
 
-GraphNode::~GraphNode()
-{
-    //// STUDENT CODE
-    ////
-
-    // remove child Edges
-
-    for (auto it = std::begin(_childEdges); it != std::end(_childEdges); ++it)
-    {
-        auto manual = it->release();
-        
-        if(manual != nullptr)
-        {
-            delete manual;
-        }
-    }
-
-    // remove parent Edges
-
-    _parentEdges.clear();
-
-    ////
-    //// EOF STUDENT CODE
-}
+GraphNode::~GraphNode(){}
 
 void GraphNode::AddToken(std::string token)
 {
@@ -48,7 +25,7 @@ void GraphNode::AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge)
 
 //// STUDENT CODE
 ////
-void GraphNode::MoveChatbotHere(ChatBot&& chatBot)
+void GraphNode::MoveChatbotHere(ChatBot chatBot)
 {
     _chatBot = ChatBot(std::move(chatBot));
 

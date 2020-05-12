@@ -21,25 +21,7 @@ ChatLogic::ChatLogic()
     //// EOF STUDENT CODE
 }
 
-ChatLogic::~ChatLogic()
-{
-    //// STUDENT CODE
-    ////
-
-    // delete all nodes
-    for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
-    {
-        auto manual = it->release();
-
-        if (manual != nullptr)
-        {
-            delete manual;
-        }
-    }
-
-    ////
-    //// EOF STUDENT CODE
-}
+ChatLogic::~ChatLogic(){}
 
 template <typename T>
 void ChatLogic::AddAllTokensToElement(std::string tokenID, tokenlist& tokens, T& element)
