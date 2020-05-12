@@ -5,9 +5,10 @@
 #include <string>
 #include <memory>
 #include "chatgui.h"
+#include "chatbot.h"
 
 // forward declarations
-class ChatBot;
+// class ChatBot;
 class GraphEdge;
 class GraphNode;
 
@@ -25,7 +26,7 @@ private:
 
     // data handles (not owned)
     GraphNode* _currentNode;
-    ChatBot _chatBot;
+    ChatBot* _chatBot;
     ChatBotPanelDialog* _panelDialog;
 
     // proprietary type definitions

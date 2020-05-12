@@ -34,7 +34,11 @@ ChatBot::ChatBot(std::string filename)
 
 ChatBot::~ChatBot()
 {
-    std::cout << "ChatBot Destructor" << std::endl;
+    std::cout << "ChatBot Destructor"
+              << " - chatLogic(" << (_chatLogic != nullptr) << ")"
+              << " - rootNode(" << (_rootNode != nullptr) << ")"
+              << " - image(" << (_image != NULL) << ")"
+              << std::endl;
 
     // deallocate heap memory
     if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
@@ -51,9 +55,7 @@ ChatBot::ChatBot(const ChatBot& other)
 {
     std::cout << "ChatBot Copy Constructor" << std::endl;
 
-    // invalidate data handles
-    _chatLogic = nullptr;
-
+    _chatLogic = other._chatLogic;
     _rootNode = other._rootNode;
     _image = other._image;
 }
@@ -75,9 +77,7 @@ ChatBot& ChatBot::operator=(const ChatBot& other)
         std::cout << " [OTHER] " << std::endl;
     }
 
-    // invalidate data handles
-    _chatLogic = nullptr;
-
+    _chatLogic = other._chatLogic;
     _rootNode = other._rootNode;
     _image = other._image;
 
@@ -90,11 +90,15 @@ ChatBot::ChatBot(ChatBot&& other)
 {
     std::cout << "ChatBot Move Constructor" << std::endl;
 
-    // invalidate data handles
-    _chatLogic = nullptr;
-
+    _chatLogic = other._chatLogic;
     _rootNode = other._rootNode;
     _image = other._image;
+
+    _chatLogic->SetChatbotHandle(this);
+
+    other._chatLogic = nullptr;
+    other._rootNode = nullptr;
+    other._image = NULL;
 }
 
 // move constructor operator
@@ -114,11 +118,15 @@ ChatBot& ChatBot::operator=(ChatBot&& other)
         std::cout << " [OTHER] " << std::endl;
     }
 
-    // invalidate data handles
-    _chatLogic = nullptr;
-
+    _chatLogic = other._chatLogic;
     _rootNode = other._rootNode;
     _image = other._image;
+
+    _chatLogic->SetChatbotHandle(this);
+
+    other._chatLogic = nullptr;
+    other._rootNode = nullptr;
+    other._image = NULL;
 
     return *this;
 }
