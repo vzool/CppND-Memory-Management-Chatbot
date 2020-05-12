@@ -193,6 +193,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         // search for nodes which have no incoming edges
         if ((*it)->GetNumberOfParents() == 0)
         {
+
             if (rootNode == nullptr)
             {
                 rootNode = it->get(); // assign current node to root
@@ -216,7 +217,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     // send reference to _chatBot
     _chatBot = &chatBot;
 
-    rootNode->MoveChatbotHere(std::move(chatBot));
+    rootNode->MoveChatbotHere(std::make_unique<ChatBot>(std::move(chatBot)));
 
     ////
     //// EOF STUDENT CODE
